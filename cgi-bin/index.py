@@ -11,6 +11,8 @@ search = form.getvalue('search', "")
 DATABASE_URL = 'cgi-bin/escuela.sqlite'
 connection = sqlite3.connect(DATABASE_URL)
 query_string = "SELECT usuario FROM alumnos WHERE NOT admin"
+if search:
+    query_string = "SELECT usuario FROM alumnos WHERE NOT admin and id={search}".format(search=search)
 query = connection.execute(query_string)
 
 alumnos = [alumno[0] for alumno in query]
