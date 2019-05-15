@@ -9,7 +9,7 @@ connection = sqlite3.connect(DATABASE_URL)
 query_string = "SELECT usuario FROM alumnos WHERE NOT admin"
 query = connection.execute(query_string)
 
-alumnos = list(query)
+alumnos = [alumno[0] for alumno in query]
 
 
 # Generar la salida
