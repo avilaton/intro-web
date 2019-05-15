@@ -1,11 +1,21 @@
 #! /usr/bin/env python3
 
+import sqlite3
+
+
+# Conseguir los datos
+DATABASE_URL = 'cgi-bin/escuela.sqlite'
+connection = sqlite3.connect(DATABASE_URL)
+query_string = "SELECT usuario FROM alumnos WHERE NOT admin"
+query = connection.execute(query_string)
+
+alumnos = list(query)
+
+
 # Generar la salida
 file = open('cgi-bin/index.html')
 template = file.read()
 file.close()
-
-alumnos = ['Gaston', 'Verónica', 'Jerónimo']
 
 item = '<li>{alumno}</li>'
 items = ""
